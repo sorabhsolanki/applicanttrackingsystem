@@ -10,7 +10,8 @@
   		http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
 	<context:annotation-config />
-	<mongo:repositories base-package="com.apt.repository" />
+	<context:component-scan base-package="com.applicant.dao"/>
+	<mongo:repositories base-package="com.applicant.repository" />
 
     <bean 
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -20,9 +21,8 @@
 		</property>
 	</bean>
 
-<!-- 	<mongo:mongo host="${mongo.host}" port="${mongo.port}" id="mongo"/> -->
 	<mongo:mongo host="localhost" port="27017" id="mongo"/>
-	<mongo:db-factory dbname="apsys" mongo-ref="mongo" id="mongoDbFactory" />
+	<mongo:db-factory dbname="applicant" mongo-ref="mongo" id="mongoDbFactory" />
 
 	<!-- MongoTemplate -->
 
@@ -46,6 +46,12 @@
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 		<constructor-arg name="mongoConverter" ref="mappingMongoConverter" />
+	</bean>
+	
+	<!-- MongoDB GridFS Template -->
+	<bean id="gridTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+		<constructor-arg ref="mongoDbFactory" />
+		<constructor-arg ref="mappingMongoConverter" />
 	</bean>
 
 	<!-- Use this post processor to translate any MongoExceptions thrown in 
