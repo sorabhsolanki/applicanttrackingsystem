@@ -28,6 +28,20 @@
 		<link href="${skelCss}" rel="stylesheet" />
 		<link href="${styleCss}" rel="stylesheet" />
 		<link href="${xlargeCss}" rel="stylesheet" />
+		
+		<script type='text/javascript'>
+
+$(document).ready(function() {
+	
+	$("#schedule").click(function(){
+		$("#myForm").attr("action", "${pageContext.request.contextPath}/scheduleInterview");
+		$("#myForm").attr("method", "POST");
+	    $("#myForm").submit();
+	});
+		
+});
+
+</script>
 
 	</head>
 	<body>
@@ -52,12 +66,12 @@
 					</header>
 
 					
-				<form:form action="searchResume" method="POST" commandName="candidateDto" enctype="multipart/form-data">	
+				<form:form action="searchResume" method="POST" commandName="candidateDto" enctype="multipart/form-data" id="myForm">	
 					<p><b>Name of candidate:</b>
 					<form:input path="candidatename"/>
 					<p><b>Email Id:</b>
 		            <form:input path="candidateEmail"/></p>
-					<p><input type="submit" value="Search Resume"></p>
+					<p><input type="submit" value="Search Resume" class="button big"></p>
 					<c:if test='${not empty searchResume}'>
 					<h3>Candidate Resume</h3>
 					<div class="table-wrapper" id="participantInfo">
@@ -72,9 +86,9 @@
 							<tbody>
 								<tr>
 									<td>${searchResume}</td>
-									<td><a href="#">  Download  </a></td>
-									<td><input type="reset" value="Schedule An Interview"></td>
-								</tr>
+									<td><a href="${pageContext.request.contextPath}/getFileByName/${candidateName}">  Download  </a></td>
+									<td><input type="button" value="Schedule An Interview" id="schedule"/></td>
+								</tr><
 							</tbody>
 
 						</table>

@@ -1,7 +1,5 @@
 package com.applicant.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.applicant.dto.CandidateDto;
 import com.applicant.dto.JobPostDto;
@@ -77,20 +74,11 @@ public class ApplicantController {
 		return "jobpost";	
     }
 	
-	@RequestMapping(value = "/uploadResume", method = RequestMethod.POST)
-	public String postJob(ModelMap modelMap, CandidateDto candidateDto, @ModelAttribute(value = "candidateResume") MultipartFile candidateResume){
-		boolean result = false;
-		result = applicantTrackingService.uploadResume(candidateDto, candidateResume);
-		if(result){
-			modelMap.put("successMsg", "Candidate " + candidateDto.getCandidatename() + " details has been uploaded successfully.");
-		}
-		return "resume";	
-    }
-	
 	@RequestMapping(value = "/searchResume", method = RequestMethod.POST)
 	public String searchResume(ModelMap modelMap, CandidateDto candidateDto){
 		String resume = applicantTrackingService.searchResume(candidateDto);
 		modelMap.put("searchResume", resume);
+		modelMap.put("candidateName", candidateDto.getCandidatename());
 		return "scheduleinterview";
     }
 	

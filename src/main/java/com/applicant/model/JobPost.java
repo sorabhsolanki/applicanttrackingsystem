@@ -13,6 +13,8 @@ public class JobPost {
 	private String openPosition;
 	private Date plannedEndDate;
 	private String contractType;
+	private String status;
+	private Date timestamp;
 	
 	public String getJobName() {
 		return jobName;
@@ -60,5 +62,21 @@ public class JobPost {
 	
 	public void setContractType(String contractType) {
 		this.contractType = contractType;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 }

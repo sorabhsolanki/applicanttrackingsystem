@@ -9,43 +9,26 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		
-		 
-		 <spring:url value="/resources/core/js/jquery.min.js" var="jqueryJs" />
+         
+         
+         <spring:url value="/resources/core/js/jquery.min.js" var="jqueryJs" />
 		 <spring:url value="/resources/core/js/skel.min.js" var="skelJs" />
 		 <spring:url value="/resources/core/js/skel-layers.min.js" var="skelLayerJs" />
 		 <spring:url value="/resources/core/js/init.js" var="initJs" />
-		 <spring:url value="/resources/core/js/jquery-ui.js" var="uiJs" />
-		 
 		 
 		 <script src="${jqueryJs}"></script>
 		 <script src="${skelJs}"></script>
 		 <script src="${skelLayerJs}"></script>
-		 <script src="${initJs}"></script>
-		 <script src="${uiJs}"></script>
-
-        <spring:url value="/resources/core/css/jquery-ui.css" var="uiCss"/>
-        <spring:url value="/resources/core/css/skel.css" var="skelCss"/>
+		 <script src="${initJs}"></script>		
+		
+		<spring:url value="/resources/core/css/skel.css" var="skelCss"/>
 		<spring:url value="/resources/core/css/style.css" var="styleCss"/>
 		<spring:url value="/resources/core/css/style-xlarge.css" var="xlargeCss"/>
 		
-		<link href="${uiCss}" rel="stylesheet" />
 		<link href="${skelCss}" rel="stylesheet" />
 		<link href="${styleCss}" rel="stylesheet" />
 		<link href="${xlargeCss}" rel="stylesheet" />
-		
-<script type='text/javascript'>
 
-$(document).ready(function() {
-	
-	$(function() {
-	    $( "#datepicker" ).datepicker();
-	  });
-		
-});
-
-</script>
-		
 	</head>
 	<body>
 
@@ -55,7 +38,6 @@ $(document).ready(function() {
 				<nav id="nav">
 					<ul>
 						<li><a href="${pageContext.request.contextPath}">Back</a></li>
-						
 					</ul>
 				</nav>
 			</header>
@@ -63,41 +45,33 @@ $(document).ready(function() {
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="container">
-                <strong>${message}</strong>
+                   <strong>${message}</strong>
 					<header class="major">
-						<h2>Post New Jobs</h2>
-						<p>Post new jobs into the system and link them with competency.</p>
+						<h2>Calendar Invite</h2>
+						<p>Send calendar invitation to the candidate.</p>
 					</header>
 
-					<form:form action="postJob" method="post" commandName="jobPostDto">
 					
-					<p><b>Job Title:</b>
-					<form:input path="jobName"/></p>
-					<p><b>Job Location:</b>
-					<form:input path="jobLocation"/></p>
-					<div class="12u$">
-					<b>Job Description</b>
-										<p><form:textarea path="message" placeholder="Describe your job in a few paragraphs" rows="6"/></p>
-									</div>
-					<p><b>Number of open position:</b>
-		                       <form:input path="openPosition"/></p>
-					<p><b>Planned end date:</b>
-		                       <form:input path="plannedEndDate" id="datepicker"/></p>
-					<div class="6u$ 12u$(4)">
-
-										<div class="select-wrapper">
-											<form:select name="category" path="contractType">
-												<form:options items="${contractTypes}" />
-											</form:select>
-										</div>
-										<p><ul class="actions">
-											<li><input type="submit" value="Post"></li>
-											<li><input type="button" value="Reset" /></li>
+				<form:form action="calendarinvite" method="POST" commandName="interviewInviteDto">	
+					<p><b>Email of candidate:</b>
+					<form:input path="to"/>
+					<p><ul class="actions">
+					<li><b>Email from:</b><form:input path="from"/></li>
+					<li><b>UserName:</b><form:input path="userName"/></li>
+					<li><b>Password:</b><form:password path="password" /></li>
+					<li><b>Type of invitation</b>
+					  <div class="select-wrapper">
+						<form:select name="type" path="option">
+    						<form:options items="${options}" />
+						</form:select>
+				       </div>
+				    </li>
+					</ul></p>
+		            <p><ul class="actions">
+											<li><input type="submit" value="Send Invite"></li>
+											<li><input type="button" value="Back"></li>
 										</ul></p>
-									</div>
-					
-					</form:form>
-
+                </form:form>
 				</div>
 			</section>
 

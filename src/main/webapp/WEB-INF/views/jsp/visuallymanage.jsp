@@ -27,6 +27,16 @@
 		<link href="${skelCss}" rel="stylesheet" />
 		<link href="${styleCss}" rel="stylesheet" />
 		<link href="${xlargeCss}" rel="stylesheet" />
+		
+		<script type='text/javascript'>
+	$(document).ready(function() {
+			
+		$.ajax({url: "${pageContext.request.contextPath}/rest/getalljobsresumes/", async: false, success: function(result){
+			 $('#jobrequest').html(result);
+		}});
+
+	});
+</script>
 
 	</head>
 	<body>
@@ -47,7 +57,7 @@
 
 					<header class="major">
 						<h2>Visual Management</h2>
-						<p>Drag and drop jobs/resumes of candidates.</p>
+						<p>Change status of jobs/resumes.</p>
 					</header>
 
 					<!-- Text -->
@@ -65,13 +75,13 @@
 					<!-- Table -->
 						<section>
 							<h3>Jobs</h3>
-							<div class="table-wrapper">
+							<div class="table-wrapper" id="jobrequest">
 								<table>
 									<thead>
 										<tr>
-											<th>Newly Added</th>
-											<th>In Progress</th>
-											<th>Completed</th>
+											<th>Job Name</th>
+											<th>Description</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -106,13 +116,13 @@
 							</div>
 							<hr />
 							<h3>Resume</h3>
-							<div class="table-wrapper">
+							<div class="table-wrapper" id="resumerequest">
 								<table class="alt">
 									<thead>
 										<tr>
-											<th>Newly Added</th>
-											<th>In Progress</th>
-											<th>Completed</th>
+											<th>Job Name</th>
+											<th>Description</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tbody>

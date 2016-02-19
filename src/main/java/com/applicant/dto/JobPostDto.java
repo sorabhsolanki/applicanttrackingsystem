@@ -1,10 +1,6 @@
 package com.applicant.dto;
 
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 public class JobPostDto {
 
@@ -14,6 +10,7 @@ public class JobPostDto {
 	private String openPosition;
 	private Date plannedEndDate;
 	private String contractType;
+	private String status;
 
 	public String getJobName() {
 		return jobName;
@@ -62,4 +59,13 @@ public class JobPostDto {
 	public void setContractType(String contractType) {
 		this.contractType = contractType;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }

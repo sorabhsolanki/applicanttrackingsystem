@@ -78,7 +78,7 @@
 						</div>
 						<div class="4u 12u$(medium)">
 							<section class="box">
-								<a href="${pageContext.request.contextPath}/interview"><i class="icon big rounded color9 fa-desktop"></i></a>
+								<a href="${pageContext.request.contextPath}/interview"><i class="icon big rounded color6 fa-rocket"></i></a>
 								<h3>Schedule an interview</h3>
 								<p>Search candidate resume and schedule an interview.</p>
 							</section>
@@ -103,11 +103,6 @@
 					</header>
 					<section class="profiles">
 						<div class="row">
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="${pageContext.request.contextPath}/resources/core/images/profile_placeholder.gif" alt="" />
-								<h4>Sorabh Solanki</h4>
-								<p>Developer and solution architect</p>
-							</section>
 							<section class="3u 6u$(medium) 12u$(xsmall) profile">
 								<img src="${pageContext.request.contextPath}/resources/core/images/profile_placeholder.gif" alt="" />
 								<h4>Alpha</h4>
@@ -123,13 +118,14 @@
 								<h4>Gama</h4>
 								<p>Role</p>
 							</section>
+							
 						</div>
 					</section>
 					<footer>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!</p>
+						<p></p>
 						<ul class="actions">
 							<li>
-								<a href="#" class="button big">Lorem ipsum dolor sit</a>
+								<a href="#" class="button big">View Profile</a>
 							</li>
 						</ul>
 					</footer>
