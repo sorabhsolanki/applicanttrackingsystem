@@ -37,6 +37,11 @@ public class ApplicantController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
+	public String loginToHome(ModelMap model){
+		return "home";
+	}
+	
 	@RequestMapping(value = "/jobpost", method = RequestMethod.GET)
 	public String jobPost(ModelMap model){
 		model.put("jobPostDto", new JobPostDto());
