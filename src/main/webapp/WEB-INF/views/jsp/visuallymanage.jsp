@@ -46,7 +46,7 @@
 				<h1><a href="${pageContext.request.contextPath}">ATS Logo</a></h1>
 				<nav id="nav">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}">Back</a></li>
+						<li><a href="${pageContext.request.contextPath}/home">Back</a></li>
 					</ul>
 				</nav>
 			</header>
