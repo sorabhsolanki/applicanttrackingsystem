@@ -5,7 +5,7 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Log'n Load</title>
+    <title>Applicant Tracking System</title>
 
     <spring:url value="/resources/core/js/jquery.min.js" var="jqueryJs" />
     <spring:url value="/resources/core/js/index.js" var="indexJs" />

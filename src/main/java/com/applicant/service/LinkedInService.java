@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import com.google.gson.Gson;
 @Service
 public class LinkedInService {
 
-	private final String HEADER = " <table><thead><tr><th>Candidate Name</th><th>Title</th><th>Photo</th></tr></thead>";
+	private final String HEADER = " <table><thead><tr><th>Candidate Name</th><th>Title</th><th>LinkedIn URL</th><th>Photo</th></tr></thead>";
 	private final String START_TAG = "<tbody>";
 	private final String END_TAG = "</tbody>";
 	private final String FOOTER = "</table>";
@@ -27,7 +28,7 @@ public class LinkedInService {
 		StringBuilder builder = new StringBuilder(HEADER);
 		builder.append(START_TAG);
 		try {
-			makeJson();
+			makeJson(keyword);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -36,6 +37,7 @@ public class LinkedInService {
 			builder.append("<tr>");
 			builder.append("<td>" + object.getFn() + "</td>");
 			builder.append("<td>" + object.getTitle() + "</td>");
+			builder.append("<td><a href=\""+ object.getLinkedInUrl() + "\">" + " URL </a></td>");
 			builder.append("<td><img src=\""+ object.getPhoto() +"\" alt=\"Smiley face\" height=\"42\" width=\"42\"/></td>");
 			builder.append("</tr>");
 		}
@@ -46,12 +48,17 @@ public class LinkedInService {
 	}
 	
 	private String makeKeyword(String skills) {
-		
-		return null;
+		StringTokenizer stringTokenizer = new StringTokenizer(skills,",");
+		StringBuffer keywords = new StringBuffer();
+		while(stringTokenizer.hasMoreTokens()){
+			keywords.append(stringTokenizer.nextToken().trim());
+			if(stringTokenizer.hasMoreTokens())
+				   keywords.append("%2C%20");
+		}
+		return keywords.toString();
 	}
 
-	private void makeJson() throws IOException{
-		String keyword = "java%2C%20php%2C%20golang";
+	private void makeJson(String keyword) throws IOException{
 		StringBuffer urlString = new StringBuffer("https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY")
 							.append("&rsz=filtered_cse&num=10&hl=en&prettyPrint=false&source=gcsc&gss=.com")
 							.append("&sig=432dd570d1a386253361f581254f9ca1&cx=011658049436509675749:mpshzk7cxw8&q=")
@@ -68,6 +75,8 @@ public class LinkedInService {
 		}
 		int count = 0;
 		makeDataObject(buffer.toString() , count);
+		count = 0;
+		addUrlInDataObject(buffer.toString() , count);
 	}
 	
 	private void makeDataObject(String initailString, int count){
@@ -92,5 +101,19 @@ public class LinkedInService {
 	private void makeJsonObject(String jsonString) {
 		Gson gson = new Gson();
 		objects.add(gson.fromJson(jsonString, DataObject.class));
+	}
+	
+	private void addUrlInDataObject(String initailString, int count) {
+		int hcardIndex = 0;
+		if((hcardIndex = initailString.indexOf("clicktrackUrl\":\"")) != -1){
+			String hcardString = initailString.substring(hcardIndex + 16);
+			int startCurlyIndex = hcardString.indexOf("\"");
+			String jsonString  = hcardString.substring(0, startCurlyIndex);
+			objects.get(count).setLinkedInUrl(jsonString);
+			count ++;
+			if(count >= MAX_COUNT)
+				return;
+			addUrlInDataObject(hcardString.substring(startCurlyIndex), count);
+		}
 	}
 }
