@@ -43,7 +43,7 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.3.1'
 	
 	//include in compile only, exclude in the war
-	compile 'javax.servlet:servlet-api:2.5'
+	providedCompile 'javax.servlet:servlet-api:2.5'
 }
 
 // Embeded Jetty for testing

@@ -76,20 +76,28 @@
 								<p>Download and upload candidate resume, also link them with job post.</p>
 							</section>
 						</div>
-						<div class="4u 12u$(medium)">
+						<div class="4u$ 12u$(medium)">
 							<section class="box">
 								<a href="${pageContext.request.contextPath}/interview"><i class="icon big rounded color6 fa-rocket"></i></a>
 								<h3>Schedule an interview</h3>
 								<p>Search candidate resume and schedule an interview.</p>
 							</section>
 						</div>
-						<div class="4u$ 12u$(medium)">
+                        <div class="4u 12u$(medium)">
 							<section class="box">
 								<a href="${pageContext.request.contextPath}/visuallymanage"><i class="icon big rounded color6 fa-rocket"></i></a>
 								<h3>Visual management</h3>
 								<p>Visually manage job posting under newly "created| undergoing| closed" categories.</p>
 							</section>
 						</div>
+						<div class="4u 12u$(medium)">
+							<section class="box">
+								<a href="${pageContext.request.contextPath}/linkedin"><i class="icon big rounded color6 fa-rocket"></i></a>
+								<h3>LinkedIn search</h3>
+								<p>Find linkedIn profiles via technical skills.</p>
+							</section>
+						</div>
+
 					</div>
 				</div>
 			</section>
