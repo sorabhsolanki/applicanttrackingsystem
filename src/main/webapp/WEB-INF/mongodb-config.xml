@@ -22,7 +22,7 @@
 	</bean>
 
 	<mongo:mongo host="localhost" port="27017" id="mongo"/>
-	<mongo:db-factory dbname="applicant" mongo-ref="mongo" id="mongoDbFactory" />
+	<mongo:db-factory dbname="applicant" mongo-ref="mongo" id="mongoDbFactory" write-concern="ACKNOWLEDGED"/>
 
 	<!-- MongoTemplate -->
 

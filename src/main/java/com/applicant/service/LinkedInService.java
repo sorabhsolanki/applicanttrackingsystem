@@ -20,10 +20,11 @@ public class LinkedInService {
 	private final String START_TAG = "<tbody>";
 	private final String END_TAG = "</tbody>";
 	private final String FOOTER = "</table>";
-	private final List<DataObject> objects = new ArrayList<>();
+	private List<DataObject> objects;
 	private final int MAX_COUNT = 10;
 	
 	public String getAllJobProfilesInTable(String skills){
+		objects = new ArrayList<>();
 		String keyword = makeKeyword(skills);
 		StringBuilder builder = new StringBuilder(HEADER);
 		builder.append(START_TAG);

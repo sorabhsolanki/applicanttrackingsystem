@@ -2,11 +2,13 @@ package com.applicant.model;
 
 import java.util.Date;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "jobpost")
 public class JobPost {
 
+	@Indexed(unique=true, dropDups=true)
 	private String jobName;
 	private String jobLocation;
 	private String message;
